@@ -15,7 +15,7 @@ filetype = 'parquet'
 files = sorted(list(file_path.glob(f'{ticker}*{timeframe}*.{filetype}')))
 
 dfs = [pd.read_parquet(file) for file in files]
-df = pd.concat(dfs)
+df = pd.concat(dfs).reset_index(drop=True) # for some version of pandas maybe, this is line essential
 
 COLOR_BULL = 'rgba(38,166,154,0.9)' # #26a69a
 COLOR_BEAR = 'rgba(239,83,80,0.9)'  # #ef5350
